@@ -2,12 +2,12 @@ import { describe, it, expect, beforeAll } from "vitest";
 import { bookDefaultExpects } from "./utils/bookDefaultExpects";
 import { errorDefaultExpects } from "./utils/errorDefaultExpects";
 import { request } from "./setupFiles";
-import { booksDatabase } from "../database/database";
+import { booksDataBase, booksDatabase } from "../database/database";
 import { firstBookMock } from "./__mocks/books";
 
 describe("get books", () => {
   beforeAll(() => {
-    booksDatabase.push(firstBookMock());
+    booksDataBase.push(firstBookMock());
   });
 
   it("should be able to get books correctly", async () => {

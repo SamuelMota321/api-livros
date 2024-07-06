@@ -1,22 +1,21 @@
 import { NextFunction, Request, Response } from "express";
 import { booksDataBase } from "../database/database";
+import { AppError } from "../errors/errors";
 
-export class IsProductIdValid {
+export class IsBookIdValid {
     static execute(req: Request, res: Response, next: NextFunction) {
         if (!booksDataBase.some(product => product.id == Number(req.params.id))) {
-            return res.status(404).json({ message: "Product not found." })
+            throw new AppError(404, "Book not found.")
         }
-
         next()
     }
 }
 
-export class IsProductValid {
+export class IsBookNameUnique {
     static execute(req: Request, res: Response, next: NextFunction) {
         if (booksDataBase.some(product => product.name == req.body.name)) {
-            return res.status(409).json({ message: "Product alredy exist." })
+            throw new AppError(409, "Book already registered.")
         }
-        
         next()
     }
 }

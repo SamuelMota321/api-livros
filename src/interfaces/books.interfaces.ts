@@ -2,7 +2,7 @@ export interface IBook {
     id: number
     name: string
     pages: number
-    catergory?: string
+    category?: string
     createdAt: Date
     updatedAt: Date
 }

@@ -2,8 +2,8 @@ import { describe, it, expect, beforeAll } from "vitest";
 import { bookDefaultExpects } from "./utils/bookDefaultExpects";
 import { errorDefaultExpects } from "./utils/errorDefaultExpects";
 import { request } from "./setupFiles";
-import { booksDataBase } from "../database/database";
 import { firstBookMock, secondBookMock } from "./__mocks/books";
+import { booksDataBase } from "../database/database";
 
 describe("update book", () => {
   beforeAll(() => {
@@ -44,6 +44,7 @@ describe("update book", () => {
       .send({
         name: "Jogos Vorazes",
       })
+      .expect(409)
       .then((response) => response.body);
 
     errorDefaultExpects(data);
